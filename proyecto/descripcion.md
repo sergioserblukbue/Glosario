@@ -4,7 +4,7 @@
 
 ## requerimientos funcionales
 1. Funcionalidades Básicas
-- Agregar Término: Permitir al usuario agregar un nuevo término junto con su definición.
+    - Agregar Término: Permitir al usuario agregar un nuevo término junto con su definición.
 - Buscar Término: Permitir al usuario buscar un término y mostrar su definición.
 - Modificar Término: Permitir al usuario modificar la definición de un término existente.
 - Eliminar Término: Permitir al usuario eliminar un término del glosario.
