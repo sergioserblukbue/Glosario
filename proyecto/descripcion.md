@@ -1,7 +1,10 @@
-# Glosario de terminos
-## descripcion del proyecto
+# Glosario de Terminos
+## Descripcion del Proyecto
+El proyecto Glosario de Términos de Programación en Python es una aplicación de consola que permite a los usuarios gestionar un glosario de términos relacionados con la programación. La aplicación ofrece funcionalidades para agregar, buscar, modificar, eliminar y listar términos, proporcionando persistencia de datos mediante el uso de archivos de texto.
 
-
+El objetivo principal de este proyecto es proporcionar una herramienta sencilla y eficaz para almacenar y consultar definiciones de términos de programación, facilitando el aprendizaje y la referencia rápida para estudiantes y profesionales del desarrollo de software.
+## Público Objetivo
+Este proyecto está dirigido a estudiantes de programación, desarrolladores y cualquier persona interesada en aprender y tener una referencia rápida de términos de programación. Es una herramienta educativa que facilita el almacenamiento y consulta de definiciones importantes en el campo del desarrollo de software.
 ## requerimientos funcionales
 1. Funcionalidades Básicas
     - Agregar Término: Permitir al usuario agregar un nuevo término junto con su definición.
