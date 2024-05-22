@@ -1,8 +1,8 @@
-##Glosario de terminos
-#descripcion del proyecto
+# Glosario de terminos
+## descripcion del proyecto
 
 
-#requerimientos funcionales
+## requerimientos funcionales
 1- Funcionalidades Básicas
 --Agregar Término: Permitir al usuario agregar un nuevo término junto con su definición.
 --Buscar Término: Permitir al usuario buscar un término y mostrar su definición.
