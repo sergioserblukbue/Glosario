@@ -18,22 +18,43 @@ def menu():
     print(colorama.Fore.CYAN + "\t5 para eliminar:" + colorama.Fore.WHITE + " Eliminar un término del glosario")
     print(colorama.Fore.CYAN + "\t6 para salir: " + colorama.Fore.WHITE + "Salir del programa")
     print(colorama.Fore.RESET)
-    op=int(input("Ingrese una opción: "))
+    print("Seleccione una opción: ", end="")
+    op=int(input(colorama.Fore.BLUE))
+    print(colorama.Fore.RESET)
     return op
+def agregar():
+    termino = input("Ingrese el término: ")
+    if termino in [t[0] for t in terminos]:
+        print("El término ya existe")
+        input(colorama.Fore.RED+"Presione enter para continuar")
+        return
+    definicion = input("Ingrese la definición: ")
+    terminos.append((termino, definicion))
+    print("Término agregado")
+    input(colorama.Fore.RED+"Presione enter para continuar")
+    return
+def listar():
+    for termino, definicion in terminos:
+        print(f"{termino}: {definicion}")
+    input(colorama.Fore.RED+"Presione enter para continuar")
+    return
 #programa principal
-colorama.init()
+colorama.init() #inicializa colorama
+terminos = [] #lista de términos
 op = menu()
 while op != 6:
     match op:
         case 1:
             print("Agregar")
-            input(colorama.Fore.RED+"Presione enter para continuar")
+            agregar()
+            
         case 2:
             print("Buscar")
             input(colorama.Fore.RED+"Presione enter para continuar")
         case 3:
-            print("Mostrar")
-            input(colorama.Fore.RED+"Presione enter para continuar")
+            print("Listar términos")
+            listar()
+            
         case 4:
             print("Modificar")
             input(colorama.Fore.RED+"Presione enter para continuar")
