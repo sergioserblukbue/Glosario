@@ -9,6 +9,7 @@ import colorama
 def limpiar_pantalla():
     os.system('cls' if os.name == 'nt' else 'clear')
 def menu():
+    limpiar_pantalla()
     print(colorama.Fore.GREEN + "Glosario de términos de programación")
     print(colorama.Fore.CYAN + "\t1 para agregar:" + colorama.Fore.WHITE + " Agregar un término al glosario")
     print(colorama.Fore.CYAN + "\t2 para buscar:" + colorama.Fore.WHITE + " Buscar un término en el glosario")
@@ -21,5 +22,25 @@ def menu():
     return op
 #programa principal
 colorama.init()
-limpiar_pantalla()
 op = menu()
+while op != 6:
+    match op:
+        case 1:
+            print("Agregar")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+        case 2:
+            print("Buscar")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+        case 3:
+            print("Mostrar")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+        case 4:
+            print("Modificar")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+        case 5:
+            print("Eliminar")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+        case _:
+            print("Opción no válida")
+            input(colorama.Fore.RED+"Presione enter para continuar")
+    op = menu()
