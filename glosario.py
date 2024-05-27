@@ -24,12 +24,18 @@ def menu():
     return op
 def agregar():
     termino = input("Ingrese el término: ")
+    while termino =="":
+        print("El término no puede estar vacío")
+        termino = input("Ingrese el término: ")
     if termino in [t[0] for t in terminos]:
         print("El término ya existe")
         input(colorama.Fore.RED+"Presione enter para continuar")
         return
     definicion = input("Ingrese la definición: ")
-    terminos.append((termino, definicion))
+    while definicion == "":
+        print("La definición no puede estar vacía")
+        definicion = input("Ingrese la definición: ")
+    terminos.append((termino, definicion))#agrega una tupla con el término y la definición a la lista
     print("Término agregado")
     input(colorama.Fore.RED+"Presione enter para continuar")
     return
