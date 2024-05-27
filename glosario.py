@@ -21,13 +21,33 @@ def menu():
     print(colorama.Fore.BLUE + "6" + colorama.Fore.RESET + " para salir")
     op=int(input("seleccione una opción: "))
     return op
+
+def agregar(lista):
+    termino=input("ingrese un termino para agregar: ")
+    while termino == "":
+        print("el termino no puede estar vacio!!!")
+        termino=input("ingrese un termino para agregar: ")
+    if termino in [elemento[0] for elemento in lista ]:
+        print("el termino ya existe en la lista!!")
+        input(colorama.Fore.RED + "presione enter para continuar")
+        return
+    definicion=input("ingrese la definicion: ")
+    while definicion == "":
+        print("la definicion no puede esta vacia: ")
+        definicion=input("ingrese la definicion: ")
+    lista.append((termino,definicion))
+    return
+
 #progra  principal
 colorama.init()
+listTerminos=[]
 op=menu()
 while op != 6:
     match op:
         case 1:
             print("agregar")
+            agregar(listTerminos)
+            print(listTerminos)
             input(colorama.Fore.RED + "presione enter para continuar")
         case 2:
             print("modificar")
