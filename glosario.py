@@ -5,7 +5,7 @@ fecha: 2024
 version: 1.0
 '''
 import os
-import colorama # pip install colorama / pip3 install colorama
+import colorama  # pip install colorama / pip3 install colorama
 def menu():
     '''
     funcion menu 
@@ -43,12 +43,35 @@ def limpiarPantalla():
 
     '''
     os.system('cls' if os.name=='nt' else 'clear')
+    return
+def agregar(lista):
+    termino=input("ingerse el termino: ")
+    while termino == "":
+        print("el termino no puede estar vacio!")
+        termino=input("ingerse el termino: ")
+        input(colorama.Fore.RED + "presione enter para continuar...")
+    if termino in [t[0] for t in lista]:
+        print("el termino ya existe!")
+        input(colorama.Fore.RED + "presione enter para continuar...")
+        return
+    definicion=input("ingrese la definicion: ")
+    while definicion=="":
+        print("la definicion no puede estar vacia: ")
+        definicion=input("ingrese la definicion: ")
+        input(colorama.Fore.RED + "presione enter para continuar...")
+    lista.append((termino,definicion))
+    print("termino agregado!")
+    print(lista)
+    input(colorama.Fore.RED + "presione enter para continuar...")
+    return
 #programa principal
+terminos=[]
 op = menu()
 while op != 6:
     match op:
         case 1:
             print("agregar")
+            agregar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 2:
             print("modificar")
