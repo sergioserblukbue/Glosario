@@ -33,21 +33,22 @@ def menu():
     print(colorama.Fore.BLUE + "\t6" + colorama.Fore.RESET + " para Salir")
     op = int(input(colorama.Fore.CYAN + "seleccione una opción: " + colorama.Fore.RESET ))
     return op
-def agregar(lista):
+def agregar(lista,termino=""):
     '''
     funcion para limpiar la pantalla
     Autor: Sergio Serbluk
     fecha: 2024
     version: 1.0
     '''
-    termino=input("ingrese un termino: ")
-    while termino == "":
-        print("el termino no puede estar vacio!!")
+    if termino=="":
         termino=input("ingrese un termino: ")
-    if termino in [ t[0] for t in lista]:
-        print("el termino ya se encuenta en el glosario!")
-        input(colorama.Fore.RED + "presione enter para continuar...")
-        return
+        while termino == "":
+            print("el termino no puede estar vacio!!")
+            termino=input("ingrese un termino: ")
+        if termino in [ t[0] for t in lista]:
+            print("el termino ya se encuenta en el glosario!")
+            input(colorama.Fore.RED + "presione enter para continuar...")
+            return
     definicion=input("ingrese la definicion: ")
     while definicion=="":
         print("la definicion no puede estar vacia! ")
@@ -56,6 +57,38 @@ def agregar(lista):
     print("el termino se agrego correctamente!")
     print(lista)
     return
+def listar(lista):
+    limpiarPantalla()
+    print("Lista de términos")
+    print("="*45)
+    for t , d in lista:
+        print(f"{t}: {d}")
+    print("Fin de la lista.")
+    
+    return
+def buscar(lista):
+    termino=input("ingrese el término a buscar: ")
+    for t,d in lista:
+        if termino.lower()==t.lower():
+            print(f"{t}: {d}")
+            input(colorama.Fore.RED + "presione enter para continuar...")
+            return
+    res=input("término no encontrado en la lisa, lo quiere agreagar s/n: ")
+    if res.lower() == "n":
+        return
+    elif res.lower()=="s":
+        agregar(lista,termino)
+    return
+def eliminar(lista):
+    elemento=input("ingrese el término que quiere eliminar: ")
+    for t,d in lista:
+        if t.lower()==elemento.lower():
+            lista.remove((t,d))
+            print(f"término eliminado: {elemento}")
+            return
+    print(f"no se encontro '{elemento}' en la lista de términos! ")
+    return
+
 
 #programa principal
 colorama.init() #inicializamos colorama para poder usarlo
@@ -72,12 +105,15 @@ while op !=6:
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 3:
             print("eliminar")
+            eliminar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 4:
             print("buscar")
+            buscar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 5:
             print("listar todos")
+            listar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case _:
             print("error!")
