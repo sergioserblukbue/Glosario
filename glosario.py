@@ -94,7 +94,35 @@ def buscar(lista):
     elif resp.lower()== "s":
         agregar(lista,termino)
     return
-
+def modificar(lista):
+    termino=input("ingrese el termino a modificar: ")
+    for i in range(len(lista)):
+        if lista[i][0].lower() == termino.lower():
+            print(f"termino: {lista[i][0]} definicion: {lista[i][1]}")
+            definicion=input("ingrese la nueva definicion: ")
+            while definicion=="":
+                print("la definicion no puede estar vacia!")
+                definicion=input("ingrese la nueva definicion: ")
+            lista[i]= (termino,definicion)#piso la tupla con los nuevos valores
+            print("el termino ha sido modificado con exito!")
+            return
+    print(f"el termino '{termino}' no ha sido encontrado!")
+    return
+def eliminar(lista):
+    termino=input("ingrese el termino a eliminar: ")
+    for i in range(len(lista)):
+        if lista[i][0].lower() == termino.lower():
+            print(f"termino: {lista[i][0]} definicion: {lista[i][1]}")
+            confirmacion=input("realmente quiere elimiar este termino? s/n: ")
+            if confirmacion.lower()=="s":
+                del lista[i]
+                print("termino eliminado! ")
+                return
+            else:
+                print("operacion cancelada!")
+                return
+    print(f"termino {termino} no encontrado!")
+    return
 #progra  principal
 colorama.init()
 listTerminos=[]
@@ -108,9 +136,11 @@ while op != 6:
             input(colorama.Fore.RED + "presione enter para continuar")
         case 2:
             print("modificar")
+            modificar(listTerminos)
             input(colorama.Fore.RED + "presione enter para continuar")
         case 3:
             print("eliminar")
+            eliminar(listTerminos)
             input(colorama.Fore.RED + "presione enter para continuar")
         case 4:
             print("buscar")
@@ -124,7 +154,4 @@ while op != 6:
             print("opcion no valida!")
             input(colorama.Fore.RED + "presione enter para continuar")
     op=menu()
-
-
-
     
