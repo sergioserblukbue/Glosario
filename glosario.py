@@ -6,6 +6,7 @@ version: 1.0
 '''
 import os 
 import colorama # para instalar colorama (pip install colorama)
+import time
 def limpiarPantalla():
     '''
     funcion para limpiar la pantalla
@@ -137,7 +138,8 @@ while op !=6:
         case 1:
             print("agregar")
             agregar(terminos)
-            input(colorama.Fore.RED + "presione enter para continuar...")
+            time.sleep(5)
+            #input(colorama.Fore.RED + "presione enter para continuar...")
         case 2:
             print("modificar")
             modificar(terminos)
