@@ -19,7 +19,7 @@ def menu():
 
     '''
     limpiarPantalla()
-    print(colorama.Fore.GREEN + "Glosarionde Términos de Programación".center(50))
+    print(colorama.Fore.GREEN + "Glosario de Términos de Programación".center(50))
     print("="*50)
     print(colorama.Fore.BLUE + "\t1 agregar:" + colorama.Fore.RESET + " para agregar un nuevo término")
     print(colorama.Fore.BLUE + "\t2 modificar:" + colorama.Fore.RESET + "  para modificar un término")
@@ -64,6 +64,51 @@ def agregar(lista):
     print(lista)
     input(colorama.Fore.RED + "presione enter para continuar...")
     return
+def listar(lista):
+    print("Lista de términos")
+    for termino, definicion in lista:
+        print(f"{termino}: {definicion}")
+    print("Fin de la lista de términos!")
+    return
+def buscar(lista):
+    termino=input("ingrese el término a buscar: ")
+    for ter, defi in lista:
+        if termino.lower() == ter.lower() :
+            print(f"{ter}: {defi}")
+            return
+    print("el término buscado no se encuentra en la lista!")
+    return
+def modificar(lista):
+    termino=input("ingrese el término a modificar: ")
+    for i in range(len(lista)):
+        if termino.lower() == lista[i][0]:
+            print(f"{lista[i][0]}: {lista[i][1]}")
+            definicion=input("ingrese la nueva definicion: ")
+            while definicion == "":
+                print("la definicion no puede estar  vacia!")
+                definicion=input("ingrese la nueva definicion: ")
+            lista[i]=(termino, definicion)
+            print("se modifico correctamente!")
+            return
+    print("termino no encontrado!")
+    return
+def eliminar(lista):
+    termino=input("ingrese el termino a eliminar: ")
+    for i in range(len(lista)):
+        if termino.lower() == lista[i][0]:
+            print(f"{lista[i][0]}: {lista[i][1]}")
+            confirmacion=input("Realmente quiere eliminar el término? s/n ")
+            if confirmacion.lower() == "s":
+                del lista[i]
+                print("se elimino correctamente!")
+                return
+            elif confirmacion.lower() == "n":
+                print("operacion cancelada!")
+                return
+            else:
+                print("opcion no valida")
+    print("termino no encontrado!")
+    return
 #programa principal
 terminos=[]
 op = menu()
@@ -75,15 +120,19 @@ while op != 6:
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 2:
             print("modificar")
+            modificar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 3:
             print("eliminar")
+            eliminar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 4:
             print("buscar")
+            buscar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case 5:
             print("listar")
+            listar(terminos)
             input(colorama.Fore.RED + "presione enter para continuar...")
         case _:
             print(colorama.Fore.RED + "opcion incorrecta!")
