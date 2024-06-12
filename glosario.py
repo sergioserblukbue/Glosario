@@ -6,6 +6,21 @@ Version: 1.0
 '''
 import os
 import colorama # para instalar colorama ( pip install colorama / pip3 install colorama)
+import pickle
+def guardarTerminos():
+    with open("terminos.bin","wb") as f:
+        pickle.dump(listTerminos, f)
+def cargarTerminos():
+    global listTerminos
+    try: 
+        with open("terminos.bin", "rb") as f:
+            listTerminos=pickle.load(f)
+    except FileNotFoundError:
+        listTerminos=[]
+    except EOFError:
+        listTerminos=[]
+
+
 def limpiarPantalla():
     '''
     Funcion limpiarPantalla()
@@ -69,6 +84,7 @@ def agregar(lista, termino=""):
         print("la definicion no puede esta vacia: ")
         definicion=input("ingrese la definicion: ")
     lista.append((termino,definicion))
+    guardarTerminos()
     return
 def listar(lista):
     limpiarPantalla()
@@ -104,6 +120,7 @@ def modificar(lista):
                 print("la definicion no puede estar vacia!")
                 definicion=input("ingrese la nueva definicion: ")
             lista[i]= (termino,definicion)#piso la tupla con los nuevos valores
+            guardarTerminos()
             print("el termino ha sido modificado con exito!")
             return
     print(f"el termino '{termino}' no ha sido encontrado!")
@@ -116,6 +133,7 @@ def eliminar(lista):
             confirmacion=input("realmente quiere elimiar este termino? s/n: ")
             if confirmacion.lower()=="s":
                 del lista[i]
+                guardarTerminos()
                 print("termino eliminado! ")
                 return
             else:
@@ -125,7 +143,8 @@ def eliminar(lista):
     return
 #progra  principal
 colorama.init()
-listTerminos=[]
+#listTerminos=[]
+cargarTerminos()
 op=menu()
 while op != 6:
     match op:
