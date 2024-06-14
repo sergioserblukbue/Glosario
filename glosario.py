@@ -6,6 +6,21 @@ version: 1.0
 '''
 import os
 import colorama  # pip install colorama / pip3 install colorama
+import pickle #libreria que permite guardar en formato binario
+def guardarTerminos():
+    with open("terminos.bin", "wb") as f:
+        pickle.dump(terminos, f)
+def cargarTerminos():
+    global terminos
+    try:
+        with open("terminos.bin", "rb") as f:
+            terminos= pickle.load(f)
+    except FileNotFoundError:
+        terminos=[]
+    except EOFError:
+        terminos=[]
+
+
 def menu():
     '''
     funcion menu 
@@ -60,6 +75,7 @@ def agregar(lista):
         definicion=input("ingrese la definicion: ")
         input(colorama.Fore.RED + "presione enter para continuar...")
     lista.append((termino,definicion))
+    guardarTerminos()
     print("termino agregado!")
     print(lista)
     input(colorama.Fore.RED + "presione enter para continuar...")
@@ -88,6 +104,7 @@ def modificar(lista):
                 print("la definicion no puede estar  vacia!")
                 definicion=input("ingrese la nueva definicion: ")
             lista[i]=(termino, definicion)
+            guardarTerminos()
             print("se modifico correctamente!")
             return
     print("termino no encontrado!")
@@ -100,6 +117,7 @@ def eliminar(lista):
             confirmacion=input("Realmente quiere eliminar el término? s/n ")
             if confirmacion.lower() == "s":
                 del lista[i]
+                guardarTerminos()
                 print("se elimino correctamente!")
                 return
             elif confirmacion.lower() == "n":
@@ -110,7 +128,7 @@ def eliminar(lista):
     print("termino no encontrado!")
     return
 #programa principal
-terminos=[]
+cargarTerminos()
 op = menu()
 while op != 6:
     match op:
