@@ -147,7 +147,7 @@ colorama.init()
 cargarTerminos()
 op=menu()
 while op != 6:
-    match op:
+    """match op:
         case 1:
             print("agregar")
             agregar(listTerminos)
@@ -171,6 +171,32 @@ while op != 6:
             input(colorama.Fore.RED + "presione enter para continuar")
         case _:
             print("opcion no valida!")
-            input(colorama.Fore.RED + "presione enter para continuar")
+            input(colorama.Fore.RED + "presione enter para continuar")"""
+    #version con if
+    if op == 1:
+        print("agregar")
+        agregar(listTerminos)
+        print(listTerminos)
+        input(colorama.Fore.RED + "presione enter para continuar")
+    elif op == 2:
+        print("modificar")
+        modificar(listTerminos)
+        input(colorama.Fore.RED + "presione enter para continuar")
+    elif op == 3:
+        print("eliminar")
+        eliminar(listTerminos)
+        input(colorama.Fore.RED + "presione enter para continuar")
+    elif op == 4:
+        print("buscar")
+        buscar(listTerminos)
+        input(colorama.Fore.RED + "presione enter para continuar")
+    elif op == 5:
+        print("listar")
+        listar(listTerminos)
+        input(colorama.Fore.RED + "presione enter para continuar")
+    else:
+        print("opcion no valida!")
+        input(colorama.Fore.RED + "presione enter para continuar")
+        
     op=menu()
     
